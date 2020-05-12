@@ -2,49 +2,27 @@
 import React from 'react';
 
 class DigitalClicker extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-        errors: [],
-        user: null,
-        settings: {
-          bitrate: 8,
-          video: {
-            resolution: '1080p'
-          }
-        }
+    constructor() {
+        super();
+    
+        this.state = {
+          timesClicked: 0,
+        };
       }
-  }
-
-  handleRes = () => {
-    this.setState({
-        settings: {
-          ...this.state.settings,
-          video: {
-            resolution: '720p'
-          }
+    
+      handleClick = () => {this.setState(previousState => 
+        {
+            return {timesClicked: previousState.timesClicked+1}
         }
-      });
-  }
-
-  handleBit = () => {
-    this.setState({
-        settings: {
-          ...this.state.settings,
-          bitrate: 12
-        }
-      });
-}
-
-  render() {
-    return (
-        <div>
-      <button onClick={this.handleBit} className="bitrate"> bitrate</button>
-      <button onClick={this.handleRes} className="resolution"> resolution</button>
-      </div>
-    );
-  }
+        )
+       
+      }
+    
+      render() {
+        return (
+            <button onClick={this.handleClick}>{this.state.timesClicked}</button>
+        );
+      }
 }
 
 export default DigitalClicker;
